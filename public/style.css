@@ -1,0 +1,733 @@
+/* ========================================
+   🌙 Werewolf Game - Styles
+   ======================================== */
+
+:root {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-card: #0f3460;
+  --accent-primary: #e94560;
+  --accent-secondary: #f39c12;
+  --accent-god: #9b59b6;
+  --accent-village: #27ae60;
+  --accent-wolf: #c0392b;
+  --accent-neutral: #3498db;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  min-height: 100vh;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ========================================
+   Screens
+   ======================================== */
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   Cards
+   ======================================== */
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: 0 8px 32px var(--shadow);
+}
+
+/* ========================================
+   Login Screen
+   ======================================== */
+
+.login-card {
+  text-align: center;
+}
+
+.login-card h1 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.login-card .subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.2);
+}
+
+input[type="text"]::placeholder {
+  color: var(--text-secondary);
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--text-secondary);
+  opacity: 0.3;
+}
+
+.divider {
+  gap: 10px;
+}
+
+.join-section {
+  display: flex;
+  gap: 10px;
+}
+
+.join-section input {
+  flex: 1;
+  text-align: center;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-primary), #d63850);
+  color: white;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 4px 20px rgba(233, 69, 96, 0.4);
+}
+
+.btn-secondary {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 2px solid var(--text-secondary);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.btn-small {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+}
+
+.btn-danger {
+  background: rgba(192, 57, 43, 0.2);
+  color: var(--accent-wolf);
+  border: 1px solid var(--accent-wolf);
+}
+
+.btn-danger:hover {
+  background: var(--accent-wolf);
+  color: white;
+}
+
+.btn-large {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 1.1rem;
+  margin-top: 20px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   Lobby Screen
+   ======================================== */
+
+.lobby-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+}
+
+.lobby-header h2 {
+  font-size: 1.3rem;
+}
+
+.lobby-header h2 span {
+  color: var(--accent-secondary);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.lobby-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.lobby-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Players List */
+.players-section {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.players-section h3 {
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.players-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.player-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  transition: transform 0.2s;
+}
+
+.player-item:hover {
+  transform: translateX(5px);
+}
+
+.player-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.player-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.player-badge {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--accent-secondary);
+  color: white;
+}
+
+.player-badge.host {
+  background: var(--accent-primary);
+}
+
+/* Config Section */
+.config-section {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.config-section h3 {
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.role-config {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.role-config::-webkit-scrollbar {
+  width: 6px;
+}
+
+.role-config::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 3px;
+}
+
+.role-config::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  border-radius: 3px;
+}
+
+.role-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.role-item .role-name {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.role-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.role-count {
+  width: 32px;
+  text-align: center;
+  font-weight: bold;
+  color: var(--accent-secondary);
+}
+
+.role-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 4px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.role-btn:hover {
+  background: var(--accent-primary);
+}
+
+.role-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Deck Info */
+.deck-info {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+}
+
+.status-ok {
+  color: var(--accent-village);
+}
+
+.status-error {
+  color: var(--accent-wolf);
+}
+
+/* Guest Info */
+.guest-info {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 30px;
+  text-align: center;
+}
+
+.guest-info p {
+  margin-bottom: 10px;
+}
+
+.guest-info .hint {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* ========================================
+   Card Reveal Screen
+   ======================================== */
+
+.card-reveal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Normal Role Card */
+.role-card {
+  width: 280px;
+  height: 400px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-back,
+.card-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back {
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
+  border: 3px solid var(--accent-primary);
+}
+
+.card-pattern {
+  width: 80%;
+  height: 80%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(233, 69, 96, 0.1) 10px,
+    rgba(233, 69, 96, 0.1) 20px
+  );
+  border: 2px solid var(--accent-primary);
+  border-radius: var(--radius-sm);
+}
+
+.card-front {
+  background: var(--bg-card);
+  transform: rotateY(180deg);
+  padding: 20px;
+  border: 3px solid var(--accent-primary);
+}
+
+.role-card.flipped .card-front {
+  transform: rotateY(0deg);
+}
+
+.role-card.flipped .card-back {
+  transform: rotateY(-180deg);
+}
+
+.role-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.role-name {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.role-faction {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+}
+
+.role-ability {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Faction Colors */
+.faction-wolf .role-faction {
+  background: rgba(192, 57, 43, 0.2);
+  color: var(--accent-wolf);
+}
+
+.faction-god .role-faction {
+  background: rgba(155, 89, 182, 0.2);
+  color: var(--accent-god);
+}
+
+.faction-village .role-faction {
+  background: rgba(39, 174, 96, 0.2);
+  color: var(--accent-village);
+}
+
+.faction-neutral .role-faction {
+  background: rgba(52, 152, 219, 0.2);
+  color: var(--accent-neutral);
+}
+
+/* Judge View */
+.judge-view {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 25px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.judge-view h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--accent-neutral);
+}
+
+.judge-intro {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.all-roles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.judge-player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 15px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.judge-player.is-me {
+  border: 2px solid var(--accent-neutral);
+}
+
+.judge-player .name {
+  font-weight: 500;
+}
+
+.judge-player .role {
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--bg-card);
+}
+
+.judge-player .is-judge {
+  font-size: 0.75rem;
+  color: var(--accent-neutral);
+}
+
+/* ========================================
+   Notifications
+   ======================================== */
+
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  padding: 15px 25px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 20px var(--shadow);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  max-width: 90%;
+  text-align: center;
+}
+
+.notification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.notification.success {
+  border-left: 4px solid var(--accent-village);
+}
+
+.notification.error {
+  border-left: 4px solid var(--accent-wolf);
+}
+
+.notification.info {
+  border-left: 4px solid var(--accent-neutral);
+}
+
+/* ========================================
+   Error Message
+   ======================================== */
+
+.error-message {
+  color: var(--accent-wolf);
+  font-size: 0.85rem;
+  margin-top: 15px;
+  min-height: 20px;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+
+  .login-card h1 {
+    font-size: 2rem;
+  }
+
+  .role-config {
+    grid-template-columns: 1fr;
+  }
+
+  .lobby-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .role-card {
+    width: 260px;
+    height: 370px;
+  }
+}
+
+/* ========================================
+   Icons (Role Emojis)
+   ======================================== */
+
+.icon-wolf::before { content: '🐺'; }
+.icon-wolfking::before { content: '👑'; }
+.icon-whitewolf::before { content: '🤍'; }
+.icon-wolfbeauty::before { content: '💋'; }
+.icon-hiddenwolf::before { content: '👤'; }
+.icon-seer::before { content: '🔮'; }
+.icon-witch::before { content: '🧪'; }
+.icon-hunter::before { content: '🏹'; }
+.icon-guardian::before { content: '🛡️'; }
+.icon-idiot::before { content: '🤪'; }
+.icon-cupid::before { content: '🏹'; }
+.icon-magician::before { content: '🎩'; }
+.icon-mason::before { content: '🔨'; }
+.icon-elder::before { content: '👴'; }
+.icon-tamer::before { content: '🐺'; }
+.icon-villager::before { content: '👨‍🌾'; }
+.icon-judge::before { content: '⚖️'; }

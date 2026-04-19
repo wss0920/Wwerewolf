@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐺 狼人杀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+      <div class="card login-card">
+        <h1>🐺 狼人杀</h1>
+        <p class="subtitle">在线多人推理游戏</p>
+        
+        <div class="form-group">
+          <label for="player-name">你的名字</label>
+          <input type="text" id="player-name" placeholder="请输入昵称" maxlength="10">
+        </div>
+
+        <div class="button-group">
+          <button id="btn-create-room" class="btn btn-primary">创建房间</button>
+          <div class="divider">或者</div>
+          <div class="join-section">
+            <input type="text" id="room-code-input" placeholder="输入房间号" maxlength="6">
+            <button id="btn-join-room" class="btn btn-secondary">加入房间</button>
+          </div>
+        </div>
+
+        <div id="login-error" class="error-message"></div>
+      </div>
+    </div>
+
+    <!-- Lobby Screen -->
+    <div id="lobby-screen" class="screen">
+      <div class="lobby-header">
+        <h2>房间 <span id="display-room-code"></span></h2>
+        <div class="lobby-actions">
+          <button id="btn-copy-code" class="btn btn-small" title="复制房间号">📋 复制</button>
+          <button id="btn-leave-room" class="btn btn-small btn-danger">离开房间</button>
+        </div>
+      </div>
+
+      <div class="lobby-content">
+        <div class="players-section">
+          <h3>👥 玩家列表 (<span id="player-count">0</span>/12)</h3>
+          <ul id="players-list" class="players-list"></ul>
+        </div>
+
+        <div id="host-controls" class="config-section" style="display: none;">
+          <h3>⚙️ 身份配置</h3>
+          <div id="role-config" class="role-config"></div>
+          
+          <div class="deck-info">
+            <span>总计: <strong id="total-cards">0</strong> 张身份牌</span>
+            <span>玩家: <strong id="total-players">0</strong> 人</span>
+            <span id="config-status" class="status-ok">✓ 匹配</span>
+          </div>
+
+          <button id="btn-deal-cards" class="btn btn-primary btn-large">🎴 开始发牌</button>
+        </div>
+
+        <div id="guest-info" class="guest-info" style="display: none;">
+          <p>⏳ 等待房主开始游戏...</p>
+          <p class="hint">可以邀请朋友加入房间</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Reveal Screen -->
+    <div id="card-screen" class="screen">
+      <div class="card-reveal-container">
+        <div id="normal-card" class="role-card" style="display: none;">
+          <div class="card-back">
+            <div class="card-pattern"></div>
+          </div>
+          <div class="card-front">
+            <div class="role-icon" id="role-icon"></div>
+            <div class="role-name" id="role-name"></div>
+            <div class="role-faction" id="role-faction"></div>
+            <div class="role-ability" id="role-ability"></div>
+          </div>
+        </div>
+
+        <div id="judge-view" class="judge-view" style="display: none;">
+          <h2>⚖️ 法官面板</h2>
+          <p class="judge-intro">你是法官，请监督游戏进程</p>
+          <div id="all-roles-list" class="all-roles-list"></div>
+        </div>
+
+        <button id="btn-back-to-lobby" class="btn btn-secondary" style="display: none;">
+          返回大厅
+        </button>
+      </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
